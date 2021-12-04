@@ -15,3 +15,12 @@ Content-Type: application/json
 
 ### Delete item by ID
 DELETE http://localhost:3000/items/1 HTTP/1.1
+
+### update item
+PUT http://localhost:3000/items/2 HTTP/1.1
+Content-Type: application/json
+
+{
+  "name": "Item 2 has been updated",
+  "price": 2.99
+}
