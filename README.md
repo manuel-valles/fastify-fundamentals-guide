@@ -10,6 +10,7 @@
     - [Handlers](#handlers)
   - [Controllers](#controllers)
   - [Swagger API Documentation](#swagger-api-documentation)
+  - [Body Validation](#body-validation)
 
 <!-- /TOC -->
 
@@ -154,3 +155,26 @@ fastify.register(require('fastify-swagger'), {
 
 Now, if you go to `http://localhost:3000/docs` you should get something like:
 <br><br><img src="./images/Swagger-example.png" width="1000">
+
+## Body Validation
+
+To add required parameters to a request, you can add it to the schema options:
+
+```js
+const addItemOptions = {
+  schema: {
+    body: {
+      type: 'object',
+      required: ['name', 'price'],
+      properties: {
+        name: { type: 'string' },
+        price: { type: 'number' },
+      },
+    },
+    response: {
+      201: Item,
+    },
+  },
+  handler: addItem,
+};
+```
