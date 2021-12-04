@@ -1,8 +1,17 @@
 const fastify = require('fastify')({ logger: true });
 const PORT = process.env.PORT || 3000;
 
-fastify.get('/items', (req, res) => {
-  res.send({ test: 'Hello World!' });
+const items = require('./mock/items.js');
+
+fastify.get('/items', (request, reply) => {
+  reply.send(items);
+});
+
+fastify.get('/items/:id', (request, reply) => {
+  const { id } = request.params;
+
+  const item = items.find((item) => item.id === id);
+  reply.send(item);
 });
 
 const start = async () => {
