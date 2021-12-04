@@ -1,4 +1,4 @@
-const items = require('../mock/Items.js');
+const { getItems, getItem } = require('../controllers/items');
 
 // Item schema
 const Item = {
@@ -20,9 +20,7 @@ const getItemsOptions = {
       },
     },
   },
-  handler: (request, reply) => {
-    reply.send(items);
-  },
+  handler: getItems,
 };
 
 const getItemOptions = {
@@ -31,12 +29,7 @@ const getItemOptions = {
       200: Item,
     },
   },
-  handler: (request, reply) => {
-    const { id } = request.params;
-
-    const item = items.find((item) => item.id === id);
-    reply.send(item);
-  },
+  handler: getItem,
 };
 
 const itemRoutes = (fastify, options, done) => {

@@ -1,13 +1,23 @@
 # Fastify Fundamentals Guide
 
+<!-- TOC -->
+
+- [Fastify Fundamentals Guide](#fastify-fundamentals-guide)
+  - [Set up project](#set-up-project)
+  - [Basic Server](#basic-server)
+  - [Routing](#routing)
+    - [Options and Validation Schemas](#options-and-validation-schemas)
+    - [Handlers](#handlers)
+  - [Controllers](#controllers)
+
+<!-- /TOC -->
+
 **[Fastify](https://www.fastify.io/)** is a fast and low overhead web framework for Node.js. It's comparable to _Express_ and it is very similar in that it is very minimalist. However there are some advantages like a complete [ecosystem](https://www.fastify.io/ecosystem/) of plugins that are offered (`jwt`, `mongodb`, `swagger`,...).
 
 > Using the `REST Client` extension for HTTP request in VSCode.
 > <br><br><img src="./images/REST-Client-example.png" width="300">
 
-## Build a REST API
-
-### 1. Set up project
+## Set up project
 
 ```bash
     $ npm init -y
@@ -15,7 +25,7 @@
     $ npm i -D nodemon
 ```
 
-### 2. Basic Server
+## Basic Server
 
 ```js
 const fastify = require('fastify')({ logger: true });
@@ -34,7 +44,7 @@ const start = async () => {
 start();
 ```
 
-### 3. Routing
+## Routing
 
 ```js
 fastify.get('/items/:id', (request, reply) => {
@@ -45,7 +55,7 @@ fastify.get('/items/:id', (request, reply) => {
 });
 ```
 
-#### 3.1. Options and Validation Schemas
+### Options and Validation Schemas
 
 ```js
 {
@@ -78,7 +88,7 @@ const Item = {
 };
 ```
 
-#### 3.1. Handlers
+### Handlers
 
 The routes can be simplified with the handler included in the options:
 
@@ -99,4 +109,27 @@ const getItemOptions = {
 
 // Get item by id
 fastify.get('/items/:id', getItemOptions);
+```
+
+## Controllers
+
+The structure can be clean up with some controllers:
+
+```js
+// ./controllers/items.js
+const getItem = (request, reply) => {
+  const id = request.params.id;
+  const item = items.find((item) => item.id === id);
+  reply.send(item);
+};
+
+// ./routes/items.js
+const getItemOptions = {
+  schema: {
+    response: {
+      200: Item,
+    },
+  },
+  handler: getItem,
+};
 ```
