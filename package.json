@@ -1,0 +1,29 @@
+{
+  "name": "fastify-fundamentals-guide",
+  "version": "1.0.0",
+  "description": "A REST API in Fastify with validation schemas and Swagger docs.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server",
+    "dev": "nodemon server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/manukempo/fastify-fundamentals-guide.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/manukempo/fastify-fundamentals-guide/issues"
+  },
+  "homepage": "https://github.com/manukempo/fastify-fundamentals-guide#readme",
+  "dependencies": {
+    "fastify": "^3.24.1",
+    "fastify-swagger": "^4.12.6",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
