@@ -7,7 +7,7 @@ const start = async () => {
   try {
     await fastify.listen(PORT);
   } catch (error) {
-    fastify.log.erroror(err);
+    fastify.log.error(err);
     process.exit(1);
   }
 };
