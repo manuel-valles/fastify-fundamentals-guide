@@ -1,7 +1,7 @@
 ### Get all items
 GET http://localhost:3000/items HTTP/1.1
 
-### Get item by id
+### Get item by ID
 GET http://localhost:3000/items/1 HTTP/1.1
 
 ### Add an item
@@ -12,3 +12,6 @@ Content-Type: application/json
   "name": "Item 4",
   "price": 4.99
 }
+
+### Delete item by ID
+DELETE http://localhost:3000/items/1 HTTP/1.1

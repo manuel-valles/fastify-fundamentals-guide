@@ -24,8 +24,16 @@ const addItem = (request, reply) => {
   reply.code(201).send(item);
 };
 
+const deleteItem = (request, reply) => {
+  const { id } = request.params;
+
+  items = items.filter((item) => item.id !== id);
+  reply.send({ message: `Item ${id} has been removed` });
+};
+
 module.exports = {
   getItems,
   getItem,
   addItem,
+  deleteItem,
 };
