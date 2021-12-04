@@ -1,4 +1,13 @@
 const fastify = require('fastify')({ logger: true });
+fastify.register(require('fastify-swagger'), {
+  exposeRoute: true,
+  routePrefix: '/docs',
+  swagger: {
+    info: {
+      title: 'Fastify API',
+    },
+  },
+});
 fastify.register(require('./routes/items'));
 
 const PORT = process.env.PORT || 3000;

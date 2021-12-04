@@ -3,12 +3,13 @@
 <!-- TOC -->
 
 - [Fastify Fundamentals Guide](#fastify-fundamentals-guide)
-  - [Set up project](#set-up-project)
+  - [Project Setup](#project-setup)
   - [Basic Server](#basic-server)
   - [Routing](#routing)
     - [Options and Validation Schemas](#options-and-validation-schemas)
     - [Handlers](#handlers)
   - [Controllers](#controllers)
+  - [Swagger API Documentation](#swagger-api-documentation)
 
 <!-- /TOC -->
 
@@ -17,7 +18,7 @@
 > Using the `REST Client` extension for HTTP request in VSCode.
 > <br><br><img src="./images/REST-Client-example.png" width="300">
 
-## Set up project
+## Project Setup
 
 ```bash
     $ npm init -y
@@ -133,3 +134,23 @@ const getItemOptions = {
   handler: getItem,
 };
 ```
+
+## Swagger API Documentation
+
+Once you have installed the `fastify-swagger` [plugin](https://github.com/fastify/fastify-swagger), during the [first step](#project-setup), **Fastify** will auto generate the `Swagger API Docs` with a very simple configuration:
+
+```js
+// ./server.js
+fastify.register(require('fastify-swagger'), {
+  exposeRoute: true,
+  routePrefix: '/docs',
+  swagger: {
+    info: {
+      title: 'Fastify API',
+    },
+  },
+});
+```
+
+Now, if you go to `http://localhost:3000/docs` you should get something like:
+<br><br><img src="./images/Swagger-example.png" width="1000">
